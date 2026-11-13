@@ -33,7 +33,7 @@ export const onSyncCallback = async (service: string, authCode: string) => {
 };
 export const encryptToken = async (service: string, config: any) => {
   let syncToken = JSON.stringify(config);
-  let isAuthed = await TokenService.getToken("is_authed");
+  let isAuthed = false; // selfhost: 永远本地明文，不碰官方服务器
   if (!isAuthed) {
     await TokenService.setToken(service + "_token", syncToken);
     return 200;
@@ -57,7 +57,7 @@ export const encryptToken = async (service: string, config: any) => {
   return response.code;
 };
 export const decryptToken = async (service: string) => {
-  let isAuthed = await TokenService.getToken("is_authed");
+  let isAuthed = false; // selfhost: 永远本地明文，不碰官方服务器
   if (!isAuthed) {
     let syncToken = (await TokenService.getToken(service + "_token")) || "{}";
     return JSON.parse(syncToken);

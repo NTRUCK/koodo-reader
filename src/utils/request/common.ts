@@ -25,10 +25,8 @@ export const uploadFile = async (url: string, file: any) => {
   });
 };
 export const checkStableUpdate = async () => {
-  let res = await axios.get(
-    PUBLIC_URL + `/api/update?name=${navigator.language}`
-  );
-  return res.data.log;
+  // selfhost: 永远不提示更新
+  return { version: "999.999.999" };
 };
 export const sendFeedback = async (data: any) => {
   let config: any = {

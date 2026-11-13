@@ -370,10 +370,8 @@ class SettingDialog extends React.Component<
         this.state.driveConfig.token
       );
     }
-    if (this.props.isAuthed) {
-      ConfigService.setItem("defaultSyncOption", this.props.settingDrive);
-      this.props.handleFetchDefaultSyncOption();
-    }
+    ConfigService.setItem("defaultSyncOption", this.props.settingDrive);
+    this.props.handleFetchDefaultSyncOption();
     this.props.handleFetchDataSourceList();
     this.props.handleSettingDrive("");
   };
